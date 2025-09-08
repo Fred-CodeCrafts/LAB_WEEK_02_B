@@ -3,6 +3,7 @@ package com.fredcodecrafts.lab_week_02_b
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +26,7 @@ class ResultActivity : AppCompatActivity() {
             try {
                 backgroundScreen.setBackgroundColor(Color.parseColor("#$colorCode"))
             } catch (ex: IllegalArgumentException) {
-                // 👇 send error back
+                // send error back
                 intent.putExtra(ERROR_KEY, true)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
@@ -38,6 +39,12 @@ class ResultActivity : AppCompatActivity() {
                 R.string.color_code_result_message,
                 colorCode?.uppercase()
             )
+        }
+
+        // 👇 Back button setup
+        val backButton = findViewById<Button>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish() // closes ResultActivity and goes back to MainActivity
         }
     }
 }
